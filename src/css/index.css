@@ -131,7 +131,7 @@ body {
     font-size: 20;
 }
 
-#mapid { height: 90%; width: 100%;}
+#mapid { height: 100%; width: 100%;}
 
 .fixed-table-loading {
     display: none;
@@ -168,4 +168,24 @@ body {
     padding: 7 5 3 5;
     border: 1px solid gray;
     border-radius: 5px 0px 0px 5px;
+}
+
+#linkMin {
+    width: 3.5em;
+}
+
+#linkMax {
+    width: 3.5em;
+}
+
+#nodeMin {
+    width: 3.5em;
+}
+
+#nodeMax {
+    width: 3.5em;
+}
+
+#charge {
+    width: 3.5em;
 }

@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-26 19:46:57
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-04-28 10:51:17
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -190,7 +190,7 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
 
 
     countryName.forEach(function (d, i) {
-        console.log(d)
+        //console.log(d)
         let lat = getLatlng[d][0];
         let lng = getLatlng[d][1];
 

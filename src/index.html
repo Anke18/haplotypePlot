@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-28 10:22:40
+ * @LastEditTime: 2020-04-28 19:02:04
  -->
 
 <title>Viral Genotyping Map - 2019 Novel Coronavirus Resource</title>
@@ -195,10 +195,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="linkSize">Branch Size:&nbsp;&nbsp;</label>
-                            <b>1&nbsp;&nbsp;</b>
-                            <input id="linkSize" type="text" data-stopPropagation="true" />
-                            <b>500</b>
+                            <label for="linkSize" style="display: inline-block;">Branch Size:&nbsp;&nbsp;&nbsp;</label>
+                            <label style="display: inline-block;">Min:&nbsp;&nbsp;</label>
+                            <input type="number" id="linkMin" name="linkMin" style="display: inline-block;" min="1" max="200" value=5 >
+                            <label style="display: inline-block;">&nbsp;&nbsp;&nbsp;Max:&nbsp;&nbsp;</label>
+                            <input type="number" id="linkMax" name="linkMax" style="display: inline-block;" min="1" max="500" value=200>
                         </div>
 
                         <div class="form-group">
@@ -213,20 +214,18 @@
                             </div>
                         </div>
 
+
                         <div class="form-group">
-                            <label for="nodeSize">Node Size:&nbsp;&nbsp;&nbsp;</label>
-                            <b>1&nbsp;&nbsp;</b>
-                            <input id="nodeSize" type="text" data-stopPropagation="true" />
-                            <b>50</b>
+                            <label for="nodeSize" style="display: inline-block;">Node Size:&nbsp;&nbsp;&nbsp;</label>
+                            <label style="display: inline-block;">Min:&nbsp;&nbsp;</label>
+                            <input type="number" id="nodeMin" name="nodeMin" style="display: inline-block;" min="1" max="15" value=1>
+                            <label style="display: inline-block;">&nbsp;&nbsp;&nbsp;Max:&nbsp;&nbsp;</label>
+                            <input type="number" id="nodeMax" name="nodeMax" style="display: inline-block;" min="1" max="50" value=15>
                         </div>
 
                         <div class="form-group">
-                            <label for="chargeSize">Charge:&nbsp;&nbsp;&nbsp;</label>
-
-                            <b>-100&nbsp;&nbsp;</b>
-                            <input id="chargeSize" type="text" data-stopPropagation="true" />
-                            <b>0</b>
-
+                            <label for="charge" style="display: inline-block;">Charge:&nbsp;&nbsp;&nbsp;</label>
+                            <input type="number" id="charge" name="charge" style="display: inline-block;" min="-100" max="0" value=-2>
                         </div>
 
                     </form>

@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-28 10:31:36
+ * @LastEditTime: 2020-04-28 19:00:45
  */
 import './css/index.css'
 import * as d3 from 'd3';
@@ -31,7 +31,6 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     let uniqueDate = getUniqueDate(graph)
     let uniqueVirus = getUniqueVirus(graph)
     let infor = graph.infor;
-    console.log(infor);
 
     let colorCustom = defaultColor;
     let nodeExtent = d3.extent(graph.nodes.map(a => a.radius))
@@ -89,12 +88,11 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     simulation.force("link")
         .links(graph.links);
 
-    $("#setCharge,input[name='linkScaleType'],input[name='nodeScaleType'],#linkSize,#nodeSize,#chargeSize").on("change", e => {
-        let linkRange = [parseInt($("#linkSize").val().split(",")[0]), parseInt($("#linkSize").val().split(",")[1])]
-        let nodeRange = [parseInt($("#nodeSize").val().split(",")[0]), parseInt($("#nodeSize").val().split(",")[1])]
-        let charge = $("#chargeSize").val();
+    $("input[name='linkScaleType'],input[name='nodeScaleType'],#linkMin,#linkMax,#nodeMin,#nodeMax,#charge").on("change", e => {
 
-        $("#setCharge").val(charge);
+        let linkRange = [parseInt($("#linkMin").val()), parseInt($("#linkMax").val())]
+        let nodeRange = [parseInt($("#nodeMin").val()), parseInt($("#nodeMax").val())]
+        let charge = $("#charge").val();
 
         linkScale = setScale($("input[name='linkScaleType']:checked").val(), linkExtent, linkRange)
         nodeScale = setScale($("input[name='nodeScaleType']:checked").val(), nodeExtent, nodeRange)
@@ -267,7 +265,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     $('.fa-info-circle').tooltip({
         html: true,
         placement: 'left',
-        title: "Scale: Set the type of scale for mapping data.<br>Size: Set the domain of the size of items.<br>Collision: Set repulsive force of the nodes to prevent overlapping."
+        title: "Scale: Set the type of scale for mapping data.<br>Size: Set the domain of the size of items.<br>Charge: Set repulsive force of the nodes to prevent overlapping."
     });
 
     let getInfor = "Haplotype maps of novel coronavirus across the whole world and China are constructed, respectively, based on the genome variation information obtained from available high-quality genome sequences.<br><br>" + infor + "<br>";
