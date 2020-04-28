@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-26 19:44:36
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-04-28 10:31:36
  */
 import './css/index.css'
 import * as d3 from 'd3';
@@ -30,6 +30,8 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     let uniqueCountry = getUniqueCountry(graph);
     let uniqueDate = getUniqueDate(graph)
     let uniqueVirus = getUniqueVirus(graph)
+    let infor = graph.infor;
+    console.log(infor);
 
     let colorCustom = defaultColor;
     let nodeExtent = d3.extent(graph.nodes.map(a => a.radius))
@@ -266,6 +268,13 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
         html: true,
         placement: 'left',
         title: "Scale: Set the type of scale for mapping data.<br>Size: Set the domain of the size of items.<br>Collision: Set repulsive force of the nodes to prevent overlapping."
+    });
+
+    let getInfor = "Haplotype maps of novel coronavirus across the whole world and China are constructed, respectively, based on the genome variation information obtained from available high-quality genome sequences.<br><br>" + infor + "<br>";
+    $('.fa-question-circle').tooltip({
+        html: true,
+        placement: 'bottom',
+        title: getInfor
     });
 
     drawGeneStructure(colorCustom)
