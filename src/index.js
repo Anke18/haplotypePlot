@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-28 19:00:45
+ * @LastEditTime: 2020-04-28 20:42:43
  */
 import './css/index.css'
 import * as d3 from 'd3';
@@ -269,7 +269,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     });
 
     let getInfor = "Haplotype maps of novel coronavirus across the whole world and China are constructed, respectively, based on the genome variation information obtained from available high-quality genome sequences.<br><br>" + infor + "<br>";
-    $('.fa-question-circle').tooltip({
+    $('#plotInfor').tooltip({
         html: true,
         placement: 'bottom',
         title: getInfor
