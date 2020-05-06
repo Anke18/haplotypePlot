@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-28 20:42:43
+ * @LastEditTime: 2020-05-06 10:33:43
  */
 import './css/index.css'
 import * as d3 from 'd3';
@@ -161,7 +161,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     defaultBehaviors(uniqueCountry, uniqueDate, graph)
 
     $('#searchBar').on('select2:select', function (e) {
-        nodeHighlight(node, link, globalSearch($('#searchBar').val(), graph), 0.2)
+        nodeHighlight(node, link, globalSearch($('#searchBar').val(), graph), 0.1)
     });
 
     let chart = drawHeatmapDate(uniqueDate)
@@ -191,7 +191,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
             name: params.name
         })
         let res = globalSearch(params.value[0] + "|date", graph)
-        nodeHighlight(node, link, res, 0.2);
+        nodeHighlight(node, link, res, 0.05);
         let a = uniqueVirus.filter(e => e.date === params.value[0])
 
         updateNodeTableByVirus(a)
@@ -244,8 +244,9 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
         updateNodeTableByVirus(d.Virus)
 
         $("#detail").show()
+        $("#datePlot").hide()
         $("#genePlot").hide()
-
+       
     })
 
 
@@ -301,11 +302,19 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
     $("#showTable").on("click", function () {
         $("#detail").show()
         $("#genePlot").hide()
+        $("#datePlot").hide()
     })
 
     $("#showSnp").on("click", function () {
         $("#detail").hide()
         $("#genePlot").show()
+        $("#datePlot").hide()
+    })
+
+    $("#showDate").on("click", function () {
+        $("#detail").hide()
+        $("#genePlot").hide()
+        $("#datePlot").show()
     })
 
     refreshNodeTable(graph.nodes)

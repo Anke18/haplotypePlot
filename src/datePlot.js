@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Mengwei Li
  * @Date: 2020-04-04 11:20:38
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-15 10:38:18
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-05-06 10:47:58
  */
 
 // import * as echarts from 'echarts';
@@ -68,7 +68,8 @@ export const drawHeatmapDate = (data) => {
             label: {
                 show: true,
                 formatter: function(params) {
-                    return params.value[0].split('-')[1]+"-"+params.value[0].split('-')[2]
+                   // return params.value[0].split('-')[1]+"-"+params.value[0].split('-')[2]
+                   return params.value[0].split('-')[2]
                 },
                 color: "#6c757d"
             },

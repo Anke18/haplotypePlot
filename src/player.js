@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Mengwei Li
  * @Date: 2020-04-05 12:15:28
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-14 11:06:46
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-05-06 09:48:26
  */
 
 import { globalSearch } from './search';
@@ -44,7 +44,7 @@ export const playStart = (bu, uniqueDate, graph, node, link, chart,
 
         drawCircle(map, getLatlng, Object.keys(lociCount), Object.values(lociCount), Object.keys(lociCount).map(e => colorMap[e]), globalSearch, nodeHighlight, node, link, chart, uniqueVirus, graph)
         
-        nodeHighlight(node, link, a, 0.2);
+        nodeHighlight(node, link, a, 0.02);
 
         chart.dispatchAction({
             type: 'highlight',

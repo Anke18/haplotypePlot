@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-28 10:51:17
+ * @LastEditTime: 2020-05-06 10:32:18
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -87,6 +87,12 @@ export const setCountryCoord = () => {
         { "name": "Qatar", "lat": 25.17, "lng": 51.32, },
         { "name": "SriLanka", "lat": 7.8731, "lng": 80.7718 },
         { "name": "Gambia", "lat": 13.4432, "lng": 15.3101 },
+        { "name": "UnitedArabEmirates", "lat": 24.466667, "lng": 54.366669 },
+        { "name": "CostaRica", "lat": 9.934739, "lng": 275.912498 },
+        { "name": "Kazakhstan", "lat": 43.238949, "lng": 76.889709 },
+        { "name": "Indonesia", "lat": -8.409518, "lng": 115.188919 },
+        { "name": "Philippines", "lat": 16.566233, "lng": 121.262634 },
+        { "name": "Egypt", "lat": 26.8205528, "lng": 30.8024979 },
         { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 }
     ];
 
@@ -190,7 +196,8 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
 
 
     countryName.forEach(function (d, i) {
-        //console.log(d)
+       // console.log("aaaa")
+       // console.log(d)
         let lat = getLatlng[d][0];
         let lng = getLatlng[d][1];
 
@@ -201,7 +208,7 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
             fillOpacity: 0.5
         }).addTo(basemap).bindPopup(d + ": " + r[i] + " isloates").on("click", e => {
             let res = globalSearch(d + "|country", graph)
-            nodeHighlight(node, link, res, 0.2)
+            nodeHighlight(node, link, res, 0.05)
             let filterNodes = graph.nodes.filter(e => res.indexOf(e.id) >= 0)
             let a = uniqueVirus.filter(e => e.loci.split("-")[0] === d)
             updateNodeTableByVirus(a)

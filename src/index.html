@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-29 16:56:34
+ * @LastEditTime: 2020-05-06 11:01:00
  -->
 
 <title>Viral Genotyping Map - 2019 Novel Coronavirus Resource</title>
@@ -129,12 +129,16 @@
         </div>
 
         <div class="bottom-left" style="position: relative;">
-            <div style="position: absolute; top: 10px; right: 10px;z-index: 100;">
-                <i id="showTable" class="fas fa-table"></i>
-                <i id="showSnp" class="fas fa-cubes"></i>
+            <div style="position: absolute; top: 10px; right: 10px; z-index: 100;">
+                <i id="showDate" class="fas fa-history" style="position: absolute; top: 10px; right: 10px;"></i>  
+                <i id="showTable" class="fas fa-table" style="position: absolute; top: 40px; right: 10px;"></i>
+              <!-- <i id="showSnp" class="fas fa-cubes" style="position: absolute; top: 70px; right: 10px;"></i>--> 
             </div>
 
-            <div class="node-table" id="genePlot" style="position:relative;"></div>
+            <div class="node-table" style="padding-top:10px;">
+                <div id="datePlot"></div>
+            </div>
+          <!--  <div class="node-table" id="genePlot" style="position:relative; display: none;"></div>--> 
             <table id="detail" style="display: none;"> </table>
         </div>
 
@@ -270,9 +274,9 @@
             <div id="plot"></div>
         </div>
 
-        <div class="date-plot-panel">
+     <!--   <div class="date-plot-panel">
             <div id="datePlot"></div>
-        </div>
+        </div> -->
     </div>
 
 </div>
