@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-06 10:33:43
+ * @LastEditTime: 2020-05-06 12:29:51
  */
 import './css/index.css'
 import * as d3 from 'd3';
@@ -276,7 +276,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
         title: getInfor
     });
 
-    drawGeneStructure(colorCustom)
+    //drawGeneStructure(colorCustom)
 
     $("#exportSvg").on("click", function () {
         saveSvg(document.getElementById("svg"), "haplotype_ncov2019_from_NGDC.svg")
@@ -305,9 +305,14 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&a
         $("#datePlot").hide()
     })
 
+    let genedraw = 0;
     $("#showSnp").on("click", function () {
         $("#detail").hide()
         $("#genePlot").show()
+        if (genedraw == 0)
+        {
+            drawGeneStructure(colorCustom)
+        }
         $("#datePlot").hide()
     })
 
