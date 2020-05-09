@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 14:46:45
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-06 09:41:35
+ * @LastEditTime: 2020-05-09 17:27:13
  */
 
 import * as d3 from 'd3';
@@ -44,6 +44,11 @@ export const nodeLinkScale = (graph) => {
 
 export const nodeLink = (graph, plotCanvas) => {
 
+    let tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+    
     let link = plotCanvas
         .attr("class", "links")
         .selectAll("line")
@@ -63,6 +68,21 @@ export const nodeLink = (graph, plotCanvas) => {
     link.on("click", d => { 
         linkHighlight(node, link, d, 0.1) 
     })
+
+    node.on('mouseover.tooltip', function(d) {
+      	tooltip.transition()
+        	.duration(300)
+        	.style("opacity", .8);
+			tooltip.html(d.group)
+        	.style("left", (d3.event.pageX) + "px")
+        	.style("top", (d3.event.pageY + 10) + "px");
+			})
+		.on("mouseout.tooltip", function() {
+			tooltip.transition()
+				.duration(100)
+				.style("opacity", 0);
+			});
+		//.on('dblclick',releasenode);
     
     return { node, link }
 }

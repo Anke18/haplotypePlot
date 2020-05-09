@@ -207,3 +207,16 @@ body {
 #charge {
     width: 3.5em;
 }
+
+.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 50px;					
+    height: 25px;					
+    padding: 2px;				
+    font: 14px bold;		
+    background: rgba(214, 221, 230, 0.74);	
+    border: 0px;		
+    /*border-radius: 8px;*/	
+    pointer-events: none;			
+}

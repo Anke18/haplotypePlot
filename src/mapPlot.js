@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-06 12:30:02
+ * @LastEditTime: 2020-05-09 17:43:03
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -94,7 +94,9 @@ export const setCountryCoord = () => {
         { "name": "Philippines", "lat": 16.566233, "lng": 121.262634 },
         { "name": "Egypt", "lat": 26.8205528, "lng": 30.8024979 },
         { "name": "Brunei", "lat": 4.74029, "lng": 114.6312 },
-        { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 }
+        { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 },
+        { "name": "Serbia", "lat": 44.787197, "lng": 20.457273 },
+        
     ];
 
     let getLatlng = {}
@@ -197,8 +199,8 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
 
 
     countryName.forEach(function (d, i) {
-      // console.log("aaaa")
-     //  console.log(d)
+       //console.log("aaaa")
+      // console.log(d)
         let lat = getLatlng[d][0];
         let lng = getLatlng[d][1];
 
