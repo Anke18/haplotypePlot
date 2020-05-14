@@ -220,3 +220,8 @@ body {
     /*border-radius: 8px;*/	
     pointer-events: none;			
 }
+
+.fas:focus,
+.fas:hover {
+  color: #FAD689;
+}

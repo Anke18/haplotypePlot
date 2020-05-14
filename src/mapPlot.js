@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-09 17:43:03
+ * @LastEditTime: 2020-05-14 09:29:59
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -26,17 +26,19 @@ export const setCountryCoord = () => {
 
     let countryCoord = [
         { "name": "China", "lat": 35.029996, "lng": 108.105469, },
-        { "name": "Japan", "lat": 35.46067, "lng": 138.867188, },
+        { "name": "Japan", "lat": 35.69067, "lng": 137.867188, },
         { "name": "Vietnam", "lat": 14.030015, "lng": 108.588867, },
         { "name": "Malaysia", "lat": 4.210484, "lng": 101.975769, },
         { "name": "Thailand", "lat": 15.870032, "lng": 100.992538, },
         { "name": "Singapore", "lat": 1.352083, "lng": 103.819839, },
         { "name": "SouthKorea", "lat": 37.663998, "lng": 127.978462, },
+        { "name": "South Korea", "lat": 37.663998, "lng": 127.978462, },
         { "name": "Nepal", "lat": 28.394857, "lng": 84.124008, },
         { "name": "Russia", "lat": 61.52401, "lng": 105.318756, },
         { "name": "Cambodia", "lat": 12.565679, "lng": 104.990963, },
         { "name": "Pakistan", "lat": 30.375321, "lng": 69.345116, },
         { "name": "UnitedStates", "lat": 37.09024, "lng": 263.671875, },
+        { "name": "United States", "lat": 37.09024, "lng": 263.671875, },
         { "name": "Canada", "lat": 58.631217, "lng": 249.257813, },
         { "name": "Brazil", "lat": -14.235004, "lng": 309.92528, },
         { "name": "Mexico", "lat": 23.634501, "lng": 258.552784, },
@@ -47,6 +49,7 @@ export const setCountryCoord = () => {
         { "name": "Norway", "lat": 60.472024, "lng": 8.468946, },
         { "name": "Ireland", "lat": 53.41291, "lng": -8.24389, },
         { "name": "UnitedKingdom", "lat": 53.225768, "lng": -1.230469, },
+        { "name": "United Kingdom", "lat": 53.225768, "lng": -1.230469, },
         { "name": "France", "lat": 46.227638, "lng": 2.213749, },
         { "name": "Germany", "lat": 51.165691, "lng": 10.451526, },
         { "name": "Spain", "lat": 40.463667, "lng": -3.74922, },
@@ -56,12 +59,15 @@ export const setCountryCoord = () => {
         { "name": "Georgia", "lat": 42.315407, "lng": 43.356892, },
         { "name": "Luxembourg", "lat": 49.815273, "lng": 6.129583, },
         { "name": "NewZealand", "lat": -40.900557, "lng": 174.885971, },
+        { "name": "New Zealand", "lat": -40.900557, "lng": 174.885971, },
         { "name": "Kuwait", "lat": 29.31166, "lng": 47.481766, },
         { "name": "Slovakia", "lat": 48.669026, "lng": 19.699024, },
         { "name": "Chile", "lat": -35.675147, "lng": 289.542969, },
         { "name": "SaudiArabia", "lat": 23.885942, "lng": 45.079162, },
+        { "name": "Saudi Arabia", "lat": 23.885942, "lng": 45.079162, },
         { "name": "Hungary", "lat": 47.162494, "lng": 19.503304, },
         { "name": "CzechRepublic", "lat": 49.817492, "lng": 15.472962, },
+        { "name": "Czech Republic", "lat": 49.817492, "lng": 15.472962, },
         { "name": "Poland", "lat": 51.919438, "lng": 19.145136, },
         { "name": "Luxemburg", "lat": 49.815273, "lng": 6.129583, },
         { "name": "Turkey", "lat": 38.963745, "lng": 35.243322, },
@@ -73,6 +79,7 @@ export const setCountryCoord = () => {
         { "name": "Congo", "lat": -0.228021, "lng": 15.827659, },
         { "name": "Algeria", "lat": 28.033886, "lng": 1.659626, },
         { "name": "SouthAfrica", "lat": -30.559482, "lng": 22.937506, },
+        { "name": "South Africa", "lat": -30.559482, "lng": 22.937506, },
         { "name": "India", "lat": 20.593684, "lng": 78.96288, },
         { "name": "Austria", "lat": 47.516231, "lng": 14.550072, },
         { "name": "Alaska", "lat": 64.200844, "lng": 205.493668, },
@@ -86,18 +93,20 @@ export const setCountryCoord = () => {
         { "name": "Iran", "lat": 32.4279, "lng": 53.6880, },
         { "name": "Qatar", "lat": 25.17, "lng": 51.32, },
         { "name": "SriLanka", "lat": 7.8731, "lng": 80.7718 },
+        { "name": "Sri Lanka", "lat": 7.8731, "lng": 80.7718 },
         { "name": "Gambia", "lat": 13.4432, "lng": 15.3101 },
         { "name": "UnitedArabEmirates", "lat": 24.466667, "lng": 54.366669 },
+        { "name": "United Arab Emirates", "lat": 24.466667, "lng": 54.366669 },
         { "name": "CostaRica", "lat": 9.934739, "lng": 275.912498 },
+        { "name": "Costa Rica", "lat": 9.934739, "lng": 275.912498 },
         { "name": "Kazakhstan", "lat": 43.238949, "lng": 76.889709 },
         { "name": "Indonesia", "lat": -8.409518, "lng": 115.188919 },
         { "name": "Philippines", "lat": 16.566233, "lng": 121.262634 },
         { "name": "Egypt", "lat": 26.8205528, "lng": 30.8024979 },
         { "name": "Brunei", "lat": 4.74029, "lng": 114.6312 },
-        { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 },
-        { "name": "Serbia", "lat": 44.787197, "lng": 20.457273 },
-        
-    ];
+        { "name": "Serbia", "lat": 44.016521, "lng": 21.005859 },
+        { "name": "Bangladesh", "lat": 23.55, "lng": 90.43 },
+        { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 }];
 
     let getLatlng = {}
 
@@ -200,7 +209,7 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
 
     countryName.forEach(function (d, i) {
        //console.log("aaaa")
-      // console.log(d)
+       //console.log(d)
         let lat = getLatlng[d][0];
         let lng = getLatlng[d][1];
 
