@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 14:46:45
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-09 17:27:13
+ * @LastEditTime: 2020-05-15 10:52:00
  */
 
 import * as d3 from 'd3';
@@ -46,7 +46,7 @@ export const nodeLink = (graph, plotCanvas) => {
 
     let tooltip = d3.select("body")
         .append("div")
-        .attr("class", "tooltip")
+        .attr("class", "d3-tip")
         .style("opacity", 0);
     
     let link = plotCanvas

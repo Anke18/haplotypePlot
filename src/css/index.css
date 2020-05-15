@@ -208,7 +208,7 @@ body {
     width: 3.5em;
 }
 
-.tooltip {	
+.d3-tip {	
     position: absolute;			
     text-align: center;			
     width: 50px;					
