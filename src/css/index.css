@@ -225,3 +225,34 @@ body {
 .fas:hover {
   color: #FAD689;
 }
+
+/*-----------button--------------*/
+
+#button1{
+    position:absolute;
+    top: 15px;
+    left: 205px;
+}
+#button2{
+    position:absolute;
+    top: 15px;
+    left: 320px;
+}
+
+.mylink:focus,
+.mylink:hover {
+  color: #FAD689;
+}
+
+.icon-btn {
+    height: 30px;
+	font-size: 11px;
+	cursor: pointer;
+	position: relative;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+	outline: none;
+	color: #666;
+	background-color: transparent;
+	white-space: nowrap;
+  }
