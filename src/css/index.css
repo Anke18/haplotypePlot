@@ -238,6 +238,11 @@ body {
     top: 15px;
     left: 320px;
 }
+#button3{
+    position:absolute;
+    top: 30px;
+    left: 540px;
+}
 
 .mylink:focus,
 .mylink:hover {
@@ -255,4 +260,4 @@ body {
 	color: #666;
 	background-color: transparent;
 	white-space: nowrap;
-  }
+}

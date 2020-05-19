@@ -1,0 +1,97 @@
+// sass
+//Var 
+//references: https://codepen.io/akshaycodes/pen/XyoVEp
+$base: #FFE6C9
+$primary: #4183c4
+$accent: #4183c4
+$secondary: white
+$tertiary: #a8b6c4
+$num: 5
+$delay: 55ms
+
+$multiplier: $delay 
+$width: 130px
+//mixins
+
+=fhover($color)
+  &:hover
+    transition: 350ms ease-in-out
+    color:  $color
+    transform: scale(1.4)
+=flex()
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: row
+  flex-wrap: wrap
+   
+=center()
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  
+=align()
+  top: 50%
+  transform: translateY(-50%)
+
+.linkbutton
+  width: $width
+  height: 30px
+  +flex()
+  +center()
+  justify-content: space-evenly
+  background:  $tertiary
+  text-align: center
+  //font-weight: bold
+  border: 1px solid #cdcdcd
+  border-radius: 10px
+  overflow: hidden
+  color: $accent
+  .flinks a
+    padding: 15px
+    transition:  700ms cubic-bezier(.89,.03,.06,1.50)
+    color: white
+    text-align: center
+    opacity: 0
+    text-decoration: none
+    transform: scale(0)
+    &:hover
+      color: $primary
+      transition-timing-function: ease-in-out!important
+      transition-delay: 1ms!important
+    @while $num > 0
+        &:nth-child(#{$num})
+            transition-delay:  (#{$delay})
+        $delay: $delay + $multiplier 
+        $num: $num - 1
+  .overlay
+      +flex()
+      width: $width
+      height: 30px
+      position: absolute
+      top: 0em
+      left: 0em
+      background: $secondary
+      transition:   1s cubic-bezier(.89,.03,.06,1.50)
+      a
+        transform: scale(1)
+        +flex()
+        opacity: 1
+        padding: 0
+        margin: auto
+        color: $accent !important
+        font-size: 11px
+
+//effects  
+.linkbutton:hover 
+  .flinks a
+    transform: scale(1)
+    opacity: 1
+  .overlay
+    transform: translateX(-500px)
+
+//animation
+@keyframes beat
+  to 
+    transform: scale(1.4)

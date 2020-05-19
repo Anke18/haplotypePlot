@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Mengwei Li
  * @Date: 2020-04-02 09:47:39
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-15 11:32:22
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-05-18 17:02:03
  */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -15,21 +15,28 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
     mode: "none",
-    entry: "./src/index.js",
+    entry: {
+        index: "./src/index.js",
+        index0: "./src/index0.js",
+        index5: "./src/index5.js",
+    },
     devtool: "inline-source-map",
     devServer: {
         contentBase: "./dist",
         hot: true
     },
     output: {
-        filename: "bundle.js",
+        filename: "[name].bundle.js",
         path: path.resolve(__dirname, "dist")
     },
     plugins: [
         // new UglifyJsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
+           // hash: true,
             template: "./src/index.html",
+            filename: 'index.html' ,
+            chunks: ['index'],
             minify: {
                 minimize: true,
                 removeConments: true,
@@ -39,6 +46,37 @@ module.exports = {
 
             }
         }),
+        new HtmlWebpackPlugin({
+          //  hash: true,
+           // title: 'My Awesome application',
+          //  myPageHeader: 'Settings',
+            template: './src/index0.html',
+            chunks: ['index0'],
+            filename: 'index0.html' ,
+            minify: {
+                minimize: true,
+                removeConments: true,
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true,
+            }
+        }),
+        new HtmlWebpackPlugin({
+            //  hash: true,
+             // title: 'My Awesome application',
+            //  myPageHeader: 'Settings',
+              template: './src/index5.html',
+              chunks: ['index5'],
+              filename: 'index5.html' ,
+              minify: {
+                  minimize: true,
+                  removeConments: true,
+                  collapseWhitespace: true,
+                  minifyCSS: true,
+                  minifyJS: true,
+              }
+          }),
+
         new webpack.HotModuleReplacementPlugin(),
         new webpack.ProvidePlugin({
             $: "jquery",
