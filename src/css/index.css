@@ -132,7 +132,7 @@ body {
     font-size: 20;
 }
 
-#mapid { height: 100%; width: 100%;}
+#mapid { height: 100%; width: 100%; z-index:1}
 
 .fixed-table-loading {
     display: none;
@@ -241,7 +241,7 @@ body {
 #button3{
     position:absolute;
     top: 30px;
-    left: 540px;
+    left: 565px;
 }
 
 .mylink:focus,
