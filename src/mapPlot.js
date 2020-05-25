@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-16 22:35:06
+ * @LastEditTime: 2020-05-25 10:13:16
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -109,7 +109,11 @@ export const setCountryCoord = () => {
         { "name": "Uruguay", "lat": -34.901112, "lng": 304.164532 },
         { "name": "Colombia", "lat": 4.570868, "lng": 285.702667 },
         { "name": "Romania", "lat": 45.943161, "lng": 24.966761 },
-        { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 }];
+        { "name": "Jamaica", "lat": 40.699783, "lng": 286.213 },
+        { "name": "Lebanon", "lat": 34.11806, "lng": 35.13972 },
+        { "name": "Uganda", "lat": 0.347596, "lng": 32.582520 },
+        { "name": "Jordan", "lat": 30.5852, "lng": 36.2384 },
+    ];
 
     let getLatlng = {}
 
@@ -134,7 +138,7 @@ export const drawMap = () => {
 
     let bounds = new L.LatLngBounds(new L.LatLng(-85, -173), new L.LatLng(85, 450));
 
-    let mbAttr = 'Map data &copy; <a href="www.tianditu.gov.cn">Map World</a> ';
+    let mbAttr = 'Map data &copy; <a href="www.tianditu.gov.cn">Tianditu</a> ';
 
     let mymap = L.map('mapid', {
         center: [40, 150],
@@ -148,17 +152,17 @@ export const drawMap = () => {
 
     let baseLayers = {
 
-        "original": L.layerGroup([
-            L.tileLayer('https://t{s}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] , attribution: mbAttr  }),
+        "Original": L.layerGroup([
+            L.tileLayer('https://t{s}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'], attribution: mbAttr }),
             //  L.tileLayer('http://t{s}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
             L.tileLayer('https://t{s}.tianditu.gov.cn/eva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=eva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
         ]).addTo(mymap),
         "Satellite": L.layerGroup([
-            L.tileLayer('https://t{s}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] , attribution: mbAttr}),
+            L.tileLayer('https://t{s}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'], attribution: mbAttr }),
             L.tileLayer('https://t{s}.tianditu.gov.cn/eia_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=eia&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
         ]),
         "Terrain": L.layerGroup([
-            L.tileLayer('https://t{s}.tianditu.gov.cn/ter_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ter&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] , attribution: mbAttr}),
+            L.tileLayer('https://t{s}.tianditu.gov.cn/ter_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ter&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'], attribution: mbAttr }),
             L.tileLayer('https://t{s}.tianditu.gov.cn/eta_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=eta&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] })
         ]),
 
@@ -197,8 +201,8 @@ export const drawMap = () => {
  */
 
 export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link, chart, uniqueVirus, graph) => {
-    
-    
+
+
     let mapNodeScale = d3.scaleSqrt()
         .domain(d3.extent(r))
         .range([2, 200])
@@ -211,34 +215,38 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
 
 
     countryName.forEach(function (d, i) {
-      // console.log("aaaa")
-       //console.log(d)
-        let lat = getLatlng[d][0];
-        let lng = getLatlng[d][1];
+        if (getLatlng[d] == undefined) { console.log(d); }
+        else {
+            //  else latlngs.push(getLatlng[k.id]);
+            //  console.log("aaaa")
+            //  console.log(d)
+            let lat = getLatlng[d][0];
+            let lng = getLatlng[d][1];
 
-        let circlesLayer = L.circleMarker([lat, lng], {
-            radius: 10 + mapNodeScale(r[i]) * 0.2, //r * 3500,
-            color: color[i],
-            fillColor: color[i],
-            fillOpacity: 0.5
-        }).addTo(basemap).bindPopup(d + ": " + r[i] + " isloates").on("click", e => {
-            let res = globalSearch(d + "|country", graph)
-            nodeHighlight(node, link, res, 0.05)
-            let filterNodes = graph.nodes.filter(e => res.indexOf(e.id) >= 0)
-            let a = uniqueVirus.filter(e => e.loci.split("-")[0] === d)
-            updateNodeTableByVirus(a)
-            chart.dispatchAction({
-                type: 'restore'
-            })
+            let circlesLayer = L.circleMarker([lat, lng], {
+                radius: 10 + mapNodeScale(r[i]) * 0.2, //r * 3500,
+                color: color[i],
+                fillColor: color[i],
+                fillOpacity: 0.5
+            }).addTo(basemap).bindPopup(d + ": " + r[i] + " isloates").on("click", e => {
+                let res = globalSearch(d + "|country", graph)
+                nodeHighlight(node, link, res, 0.05)
+                let filterNodes = graph.nodes.filter(e => res.indexOf(e.id) >= 0)
+                let a = uniqueVirus.filter(e => e.loci.split("-")[0] === d)
+                updateNodeTableByVirus(a)
+                chart.dispatchAction({
+                    type: 'restore'
+                })
 
-            chart.dispatchAction({
-                type: 'highlight',
-                seriesIndex: 0,
-                name: a.map(e => e.date)
-            })
-        });
+                chart.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    name: a.map(e => e.date)
+                })
+            });
 
-        circlesLayer.id = 'mycircle';
+            circlesLayer.id = 'mycircle';
+        }
     });
 
 }

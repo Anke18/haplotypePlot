@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-17 17:09:13
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-05-20 15:53:30
  */
 
 import * as d3 from 'd3';
@@ -131,7 +131,6 @@ export const drawGeneStructure = (colorCustom, type) => {
                     sx = [1, 1];
                 } else {
                     sx = selection.map(xGeneScale.invert);
-
                 }
 
                 let a = geneData.filter(e => e.end > sx[0])
