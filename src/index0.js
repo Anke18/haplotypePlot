@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-18 16:57:41
+ * @LastEditTime: 2020-05-26 14:59:14
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -25,7 +25,7 @@ import { drawGeneStructure } from './geneSturcture';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { refreshNodeTable, updateNodeTable, updateNodeTableByVirus } from "./nodeTable";
 
-d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq_0&area=world").then(graph => {
+d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&area=world&frequency=0").then(graph => {
 
     let uniqueCountry = getUniqueCountry(graph);
     let uniqueDate = getUniqueDate(graph)

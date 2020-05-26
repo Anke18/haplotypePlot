@@ -1,11 +1,12 @@
 <!--
  * @Descripttion: 
  * @version: 
- * @Author: Mengwei Li
- * @Date: 2020-04-02 10:03:16
+ * @Author: Anke Wang
+ * @Date: 2020-05-26 13:02:13
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-20 11:02:46
- -->
+ * @LastEditTime: 2020-05-26 15:34:29
+--> 
+
 
 <title>Viral Genotyping Map - 2019 Novel Coronavirus Resource</title>
 <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -213,9 +214,12 @@
                     aria-expanded="false"></i>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/network">切为旧版</a>
-                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/groupchart">查看分簇分布</a>
+                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/groupchart/005">查看分簇分布</a>
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/0">查看未过滤原始图像(>0)</a>
+                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/0001">查看变异频率过滤图(>0.0001)</a>
+                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/0005">查看变异频率过滤图(>0.0005)</a>
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/">查看变异频率过滤图(>0.001)</a>
+                    <a class="dropdown-item" id='faoldLink' >查看变异频率过滤图(>0.005)</a>
                 </div>
             </div>
 
@@ -232,15 +236,18 @@
                 </button>
             </div>
 
-            <div id="button2" style="text-align:center;">
-                <button class="icon-btn add-btn">
-                  <a class="mylink" href="https://bigd.big.ac.cn/ncov/groupchart">View Cluster Distribution</a>
-                </button>
+            <div id="button2" class="linkbutton2">
+                <div class="flinks">
+                    <a href="https://bigd.big.ac.cn/ncov/groupchart/005" style="font-size: 11px">>0.005</a>
+                    <div class="overlay"><a>View Cluster Distribution</a></div>
+                </div>
             </div>
 
             <div id="button3" class="linkbutton">
                 <div class="flinks">
                     <a href="https://bigd.big.ac.cn/ncov/haplotype/0" style="font-size: 11px">All</a>
+                    <a href="https://bigd.big.ac.cn/ncov/haplotype/0001" style="font-size: 11px">>0.0001</a>
+                    <a href="https://bigd.big.ac.cn/ncov/haplotype/0005" style="font-size: 11px">>0.0005</a>
                     <a href="https://bigd.big.ac.cn/ncov/haplotype/" style="font-size: 11px">>0.001</a>
                     <a style="font-size: 11px; color:#666">>0.005</a>
                     <div class="overlay"><a>Set Filter Frequency</a></div>

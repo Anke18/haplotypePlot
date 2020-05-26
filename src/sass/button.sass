@@ -10,7 +10,7 @@ $num: 5
 $delay: 55ms
 
 $multiplier: $delay 
-$width: 180px
+$width: 300px
 //mixins
 
 =fhover($color)
@@ -49,7 +49,7 @@ $width: 180px
   overflow: hidden
   color: $accent
   .flinks a
-    padding: 15px
+    padding: 8px
     transition:  700ms cubic-bezier(.89,.03,.06,1.50)
     color: white
     text-align: center
@@ -85,6 +85,63 @@ $width: 180px
 
 //effects  
 .linkbutton:hover 
+  .flinks a
+    transform: scale(1)
+    opacity: 1
+  .overlay
+    transform: translateX(-500px)
+
+
+.linkbutton2
+  width: 150px
+  height: 30px
+  +flex()
+  +center()
+  justify-content: space-evenly
+  background:  $tertiary
+  text-align: center
+  //font-weight: bold
+  border: 1px solid #cdcdcd
+  border-radius: 10px
+  overflow: hidden
+  color: $accent
+  .flinks a
+    padding: 8px
+    transition:  700ms cubic-bezier(.89,.03,.06,1.50)
+    color: white
+    text-align: center
+    opacity: 0
+    text-decoration: none
+    transform: scale(0)
+    &:hover
+      color: $primary
+      transition-timing-function: ease-in-out!important
+      transition-delay: 1ms!important
+    @while $num > 0
+        &:nth-child(#{$num})
+            transition-delay:  (#{$delay})
+        $delay: $delay + $multiplier 
+        $num: $num - 1
+  .overlay
+      +flex()
+      width: 150px
+      height: 30px
+      position: absolute
+      top: 0em
+      left: 0em
+      background: $secondary
+      transition:   1s cubic-bezier(.89,.03,.06,1.50)
+      a
+        transform: scale(1)
+        +flex()
+        opacity: 1
+        padding: 0
+        margin: auto
+        color: $accent !important
+        font-size: 11px
+
+//effects  
+.linkbutton2:hover 
   .flinks a
     transform: scale(1)
     opacity: 1

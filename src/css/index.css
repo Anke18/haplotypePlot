@@ -235,13 +235,13 @@ body {
 }
 #button2{
     position:absolute;
-    top: 15px;
-    left: 320px;
+    top: 30px;
+    left: 395px;
 }
 #button3{
     position:absolute;
     top: 30px;
-    left: 565px;
+    left: 625px;
 }
 
 .mylink:focus,
