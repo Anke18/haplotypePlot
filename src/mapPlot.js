@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-25 10:13:16
+ * @LastEditTime: 2020-05-27 14:32:21
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -138,7 +138,7 @@ export const drawMap = () => {
 
     let bounds = new L.LatLngBounds(new L.LatLng(-85, -173), new L.LatLng(85, 450));
 
-    let mbAttr = 'Map data &copy; <a href="www.tianditu.gov.cn">Tianditu</a> ';
+    let mbAttr = 'Map data &copy; <a href="http://www.tianditu.gov.cn/">Tianditu</a> ';
 
     let mymap = L.map('mapid', {
         center: [40, 150],
