@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Mengwei Li
  * @Date: 2020-04-07 18:08:20
- * @LastEditors: Mengwei Li
- * @LastEditTime: 2020-04-10 22:05:11
+ * @LastEditors: Anke Wang
+ * @LastEditTime: 2020-06-16 10:48:38
  */
 
 import { forceSimulation, forceLink, forceManyBody, forceCenter, forceX, forceY } from "d3";
@@ -13,7 +13,7 @@ export const setSimulation = (lineScale, nodeScale, charge, width, height) => {
     let simulation = forceSimulation()
         .force("link", forceLink()
             .id(d => d.id)
-            .distance(d => lineScale(d.distance) + nodeScale(d.source.radius) / 2 + (d.target.radius) / 2).strength(1))
+            .distance(d => lineScale(d.distance) + nodeScale(d.source.radius) / 2 + nodeScale(d.target.radius) / 2).strength(1))
         .force("charge", forceManyBody()
             .distanceMin(lineScale.range()[0])
             .distanceMax(lineScale.range()[1])
