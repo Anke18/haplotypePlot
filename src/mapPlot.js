@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-06-16 10:44:34
+ * @LastEditTime: 2020-06-18 15:38:10
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -123,6 +123,8 @@ export const setCountryCoord = () => {
         { "name": "BosniaandHerzegovina", "lat": 43.856430, "lng": 18.413029 },
         { "name": "Cyprus", "lat": 35.095192, "lng": 33.203430 },
         { "name": "Tunisia", "lat": 36.806389, "lng": 10.181667 },
+        { "name": "Mongolia", "lat": 47.921230, "lng": 106.918556, },
+        { "name": "California", "lat": 36.778259, "lng": 240.582069, },
     ];
 
     let getLatlng = {}
@@ -192,6 +194,60 @@ export const drawMap = () => {
     }
     // now add the click event detector to the map
     // mymap.on('click', onMapClick);
+
+    return mymap;
+};
+
+export const drawMapL = () => {
+
+    let bounds = new L.LatLngBounds(new L.LatLng(39.6, 115.7), new L.LatLng(40.15, 117));//southWest, northEast new L.LatLng(39.6, 115), new L.LatLng(40.15, 117)
+
+    let mymap = L.map('mapid', {
+        center: [39.902838, 116.396027],
+        zoom: 10,
+        minZoom: 10,
+        maxZoom: 20,
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0,
+        //  layers: grayscale
+    });
+
+    let baseLayers = {
+
+
+        "GeoQ Gray": L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetGray/MapServer/tile/{z}/{y}/{x}',).addTo(mymap),
+        "GeoQ Dark": L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}'),
+        "GeoQ original": L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'),
+
+        "天地图": L.layerGroup([
+            L.tileLayer('http://t{s}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
+            L.tileLayer('http://t{s}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
+       ]),
+        "天地图影像": L.layerGroup([
+            L.tileLayer('http://t{s}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
+            L.tileLayer('http://t{s}.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=c044ae411c12b9585d2f114dd86b2f1f', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
+       ]),
+        "天地图地形": L.layerGroup([
+            L.tileLayer('http://t{s}.tianditu.gov.cn/ter_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ter&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=56b81006f361f6406d0e940d2f89a39c', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] }),
+            L.tileLayer('http://t{s}.tianditu.gov.cn/cta_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cta&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}&tk=56b81006f361f6406d0e940d2f89a39c', { subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'] })
+        ]),
+
+    };
+
+
+    L.control.layers(baseLayers, {}, { position: "topright" }).addTo(mymap);
+
+    // get location
+    function onMapClick(e) {
+        // create a custom popup
+        var popupLocation = L.popup();
+        // location: e.latlng.lat, e.latlng.lng
+        // e.latlng -> eg. LatLng(51.50009, -0.08748)
+        popupLocation.setLatLng(e.latlng).setContent("You clicked the map at " + e.latlng.toString()).openOn(mymap);
+
+    }
+    // now add the click event detector to the map
+    //mymap.on('click', onMapClick);
 
     return mymap;
 };

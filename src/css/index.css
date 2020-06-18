@@ -261,3 +261,6 @@ body {
 	background-color: transparent;
 	white-space: nowrap;
 }
+
+.no-close .ui-dialog-titlebar-close {display: none }
+

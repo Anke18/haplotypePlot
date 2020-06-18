@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 09:47:39
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-26 14:41:39
+ * @LastEditTime: 2020-06-18 15:25:16
  */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -21,6 +21,7 @@ module.exports = {
         index5: "./src/index5.js",
         index01: "./src/index01.js",
         index05: "./src/index05.js",
+        index6: "./src/index6.js",
     },
     devtool: "inline-source-map",
     devServer: {
@@ -100,6 +101,21 @@ module.exports = {
               template: './src/index05.html',
               chunks: ['index05'],
               filename: 'index05.html' ,
+              minify: {
+                  minimize: true,
+                  removeConments: true,
+                  collapseWhitespace: true,
+                  minifyCSS: true,
+                  minifyJS: true,
+              }
+          }),
+          new HtmlWebpackPlugin({
+            //  hash: true,
+             // title: 'My Awesome application',
+            //  myPageHeader: 'Settings',
+              template: './src/index6.html',
+              chunks: ['index6'],
+              filename: 'index6.html' ,
               minify: {
                   minimize: true,
                   removeConments: true,

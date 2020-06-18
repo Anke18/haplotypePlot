@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 13:52:46
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-04-28 17:26:22
+ * @LastEditTime: 2020-06-18 13:50:40
  */
 
 import * as d3 from 'd3';
@@ -41,8 +41,9 @@ export const getUniqueDate = (data) => {
     let dateCount = dataAll.reduce(function (allNames, name) { if (name in allNames) { allNames[name]++; } else if(name.length === 10){ allNames[name] = 1; } return allNames; }, {});
 
     let dateSort = Object.keys(dateCount).sort();
-    
-    let timeRange = d3.timeDay.range(new Date(dateSort[0]), new Date(dateSort[dateSort.length - 1]))
+    let dStart = d3.timeDay.offset(new Date(dateSort[0]), -1);
+    let timeRange = d3.timeDay.range(dStart, new Date(dateSort[dateSort.length - 1])) //intresting....
+
     let formatTime = d3.timeFormat("%Y-%m-%d")
     let res = [];
 

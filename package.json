@@ -26,6 +26,8 @@
     "file-saver": "^2.0.2",
     "gridstack": "^1.1.1",
     "jquery": "^3.4.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-bundle": "^1.12.1-migrate",
     "save-svg-as-png": "^1.4.17",
     "select2": "^4.0.13"
   },
