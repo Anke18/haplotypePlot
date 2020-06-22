@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-06-18 15:38:10
+ * @LastEditTime: 2020-06-22 10:39:45
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -125,6 +125,7 @@ export const setCountryCoord = () => {
         { "name": "Tunisia", "lat": 36.806389, "lng": 10.181667 },
         { "name": "Mongolia", "lat": 47.921230, "lng": 106.918556, },
         { "name": "California", "lat": 36.778259, "lng": 240.582069, },
+        { "name": "Ecuador", "lat": 0.28626 , "lng": 283.10472 },
     ];
 
     let getLatlng = {}
