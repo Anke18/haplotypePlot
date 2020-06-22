@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-26 13:58:34
+ * @LastEditTime: 2020-06-22 13:43:03
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -65,13 +65,13 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
         .on("dblclick.zoom", null);
 
     d3.select("#zoomReset")
-        .on("click", () => plotCanvas.transition().call(zoom.scaleTo, 1))
+        .on("click", () => {plotCanvas.transition().call(zoom.scaleTo, 1); svg.transition().call(zoom.scaleTo, 1);})
 
     d3.select("#zoomIn")
-        .on("click", () => plotCanvas.transition().call(zoom.scaleBy, 1.2))
+        .on("click", () => {plotCanvas.transition().call(zoom.scaleBy, 1.2); svg.transition().call(zoom.scaleBy, 1.2);})
 
     d3.select("#zoomOut")
-        .on("click", () => plotCanvas.transition().call(zoom.scaleBy, 0.8))
+        .on("click", () => {plotCanvas.transition().call(zoom.scaleBy, 0.8); svg.transition().call(zoom.scaleBy, 0.8);})
 
     let { node, link } = nodeLink(graph, plotCanvas)
 
