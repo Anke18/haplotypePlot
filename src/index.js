@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-06-16 11:00:20
+ * @LastEditTime: 2020-07-06 16:10:03
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -22,6 +22,7 @@ import { playStart } from './player';
 import { setCountryCoord, drawMap, drawCircle } from './mapPlot';
 import { setSimulation } from './simulation';
 import { drawGeneStructure } from './geneSturcture';
+import { getFreUrl2 } from './getDataUrl';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { refreshNodeTable, updateNodeTable, updateNodeTableByVirus } from "./nodeTable";
 
@@ -191,6 +192,9 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
             name: params.name
         })
         let res = globalSearch(params.value[0] + "|date", graph)
+       // console.log(params.value[0] + "|date");
+      //  console.log(res);
+      // console.log(graph);
         nodeHighlight(node, link, res, 0.05);
         let a = uniqueVirus.filter(e => e.date === params.value[0])
 
@@ -311,7 +315,8 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
         $("#genePlot").show()
         if (genedraw == 0)
         {
-            drawGeneStructure(colorCustom)
+            let gurl = getFreUrl2(0.001);
+            drawGeneStructure(colorCustom, graph, node, link, uniqueVirus, chart, gurl, map, getLatlng, uniqueCountry);
         }
         $("#datePlot").hide()
     })

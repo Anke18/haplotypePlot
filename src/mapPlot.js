@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-04-04 15:31:42
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-03 11:06:02
+ * @LastEditTime: 2020-07-06 15:18:52
  * 
  * Code reference:
  * Leaflet Map: https://leafletjs.com/
@@ -130,6 +130,7 @@ export const setCountryCoord = () => {
         { "name": "Benin", "lat": 6.379448 , "lng": 2.451324 },
         { "name": "Venezuela", "lat": 10.500000 , "lng": 293.194444 },
         { "name": "Bulgaria", "lat": 42.698334 , "lng": 23.319941 },
+        { "name": "Peru", "lat": -10.01465 , "lng": -71.27194 },
     ];
 
     let getLatlng = {}
@@ -303,6 +304,7 @@ export const drawCircle = (basemap, getLatlng, countryName, r, color, node, link
                 let res = globalSearch(d + "|country", graph)
                 nodeHighlight(node, link, res, 0.05)
                 let filterNodes = graph.nodes.filter(e => res.indexOf(e.id) >= 0)
+                
                 let a = uniqueVirus.filter(e => e.loci.split("-")[0] === d)
                 updateNodeTableByVirus(a)
                 chart.dispatchAction({

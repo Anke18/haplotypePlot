@@ -4,21 +4,72 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-05-20 15:53:30
+ * @LastEditTime: 2020-07-06 16:41:33
  */
 
 import * as d3 from 'd3';
+import { globalSearch } from './search';
+import { nodeHighlight } from './partsHighlight';
+import { updateNodeTable, updateNodeTableByVirus } from './nodeTable';
+import { push } from 'core-js/fn/array';
+import { drawCircle } from './mapPlot';
 
-
-export const drawGeneStructure = (colorCustom, type) => {
+export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, chart, url, map, getLatlng, uniqueCountry) => {
     d3.select("#genePlot").select("svg").remove()
     Promise
         .all([
             d3.tsv("https://bigd.big.ac.cn/ewas/haplotypetest/gene_structure.tsv"),
             d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/nsp.tsv'),
             d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_altCoverage.tsv'),
-            d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_amioCoverage.tsv')
-        ]).then(([geneData, nspData, altData, amioData]) => {
+            d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_amioCoverage.tsv'),
+            d3.json(url),
+            graph
+        ]).then(([geneData, nspData, altData, amioData, variants, graph]) => {
+
+            //   console.log(altData);
+            //    console.log(variants.variants);
+
+            function sortByKey(array, key) {
+                return array.sort(function (a, b) {
+                    var x = a[key]; var y = b[key];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                });
+            }
+
+            let vdata = [];
+            variants.variant.forEach(d => {
+                d.snp.forEach(e => {
+                    vdata.push({ node: d.node, freq: e.freq, loci: e.loci });
+                });
+            })
+
+            let vdata2 = sortByKey(vdata, 'loci');
+            //console.log(vdata2);
+
+            let pvdata = [];
+            let tnode = [];
+            tnode.push(vdata2[0].node);
+            pvdata.push(vdata2[0]);
+
+            for (let i = 1, j = 0; i < vdata2.length; i++) {
+
+                if (vdata2[i].loci == vdata2[i - 1].loci) {
+                    // console.log(pvdata[j].node);
+                    tnode.push(vdata2[i].node);
+                    //pvdata[j].node.append(vdata2[i].node);
+                }
+                else {
+                    pvdata[j].node = tnode;
+                    j++;
+                    tnode = [];
+                    tnode.push(vdata2[i].node);
+                    pvdata.push({ node: vdata2[i].node, freq: vdata2[i].freq, loci: vdata2[i].loci });
+
+                }
+
+            }
+
+            //console.log(pvdata);
 
             geneData.forEach((e, i) => {
                 e.color = colorCustom[i];
@@ -42,11 +93,11 @@ export const drawGeneStructure = (colorCustom, type) => {
 
             let geneCanvas = svg.append('g')
                 .attr('transform', `translate(20, 10)`)
+            // drawDotPlot = (c, canvas,           width,  data,   xrange,     yT, t, graph)
+            //  drawDotPlot('ntPlot', geneCanvas, geneWidth, altData, [0, 29903], 10, graph)
 
-            drawDotPlot('ntPlot', geneCanvas, geneWidth, altData, [0, 29903], 10)
-
-            // drawDotPlot('aaPlot', geneCanvas, geneWidth, amioData, [0, 29903], 140)
-
+            //    drawDotPlot('aaPlot', geneCanvas, geneWidth, amioData, [0, 29903], 140,"", graph, node, link, uniqueVirus, chart)
+            // drawDotPlot('ntPlot', geneCanvas, geneWidth, altData, sx, 10, "NT", graph)
             const xAxisCanvas = geneCanvas.append('g')
                 .attr('transform', `translate(0, 265)`);
 
@@ -184,20 +235,18 @@ export const drawGeneStructure = (colorCustom, type) => {
                     .attr('text-anchor', 'middle')
                     .attr("font-size", "10px")
 
-                drawDotPlot('ntPlot', geneCanvas, geneWidth, altData, sx, 10, "NT")
+                drawDotPlot('ntPlot', geneCanvas, geneWidth, pvdata, sx, 10, "NT", graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry)
                 // drawDotPlot('aaPlot', geneCanvas, geneWidth, amioData, sx, 140, "AA")
 
             }
 
-
-
-            
-
         });
 }
 
-const drawDotPlot = (c, canvas, width, data, xrange, yT, t) => {
+const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry) => {
 
+    // console.log(t);
+    //console.log(data.variants);
     d3.select("." + c).remove()
     let dotCanvas = canvas.append("g")
         .attr('class', c)
@@ -231,7 +280,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t) => {
     let yAxisG = yAxisCanvas.append('g')
         .call(yAxis)
 
-    let a = data.filter(e => (e.pos >= xrange[0] && e.pos <= xrange[1]))
+    let a = data.filter(e => (e.loci >= xrange[0] && e.loci <= xrange[1]))
 
     dotCanvas.selectAll('.l1').data(a)
         .enter().append('line')
@@ -240,16 +289,16 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t) => {
         .attr("stroke", "red")
         .attr('x1', (d, i) => {
             // console.log(d.pos + ":" + xScale(parseInt(d.pos)))
-            return xScale(parseInt(d.pos))
+            return xScale(parseInt(d.loci))
         })
-        .attr('x2', (d, i) => xScale(parseInt(d.pos)))
+        .attr('x2', (d, i) => xScale(parseInt(d.loci)))
         .attr('y1', yScale(0))
-        .attr('y2', (d, i) => yScale(d.freq))
+        .attr('y2', (d, i) => yScale(d.freq / 28348))
         .attr("cursor", "pointer")
         .on("mouseover", (d) => {
             d3.select(".dotProp").remove()
-            let tx = Math.min(xScale(parseInt(d.pos)) + 2, width - 100)
-            let ty = Math.min(yScale(d.freq) / 2, 120)
+            let tx = Math.min(xScale(parseInt(d.loci)) + 2, width - 100)
+            let ty = Math.min(yScale(d.freq / 28348) / 2, 120)
 
             let propCanvas = dotCanvas.append('g')
                 .attr('class', 'dotProp')
@@ -264,17 +313,53 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t) => {
                 .duration(500);
 
             propCanvas.append("text")
-                .text("Freq:" + d.freq)
+                .text("Freq: " + (d.freq / 28348).toFixed(5))
                 .attr("fill", "white")
                 .attr('font-size', 10)
                 .attr('transform', `translate(5, 18)`)
 
             propCanvas.append("text")
-                .text("Coverage:" + d.number)
-                .attr("fill", "white")
-                .attr('font-size', 10)
-                .attr('transform', `translate(5, 28)`)
+                    .text("Loci: " + d.loci)
+                    .attr("fill", "white")
+                    .attr('font-size', 10)
+                    .attr('transform', `translate(5, 28)`)
         })
+        .on("click", e => {
+
+            let res = e.node;
+
+            // console.log(res.indexOf(e.id));
+            nodeHighlight(node, link, res, 0.05)
+            let filterNodes = graph.nodes.filter(e => res.indexOf(e.id) >= 0)
+
+            let tvirus = [];
+
+            filterNodes.forEach(node => {
+                tvirus = tvirus.concat(node.Virus)
+            })
+
+            // let a = uniqueVirus.filter(e => e.date === "2020-05-25")//(e => e.loci.split("-")[0] === d)
+            updateNodeTableByVirus(tvirus)
+            chart.dispatchAction({
+                type: 'restore'
+            })
+
+            chart.dispatchAction({
+                type: 'highlight',
+                seriesIndex: 0,
+                name: tvirus.map(e => e.date)
+            })
+
+            let lociCount = tvirus.map(e => e.loci.split("-")[0]).reduce(function (allNames, name) { if (name in allNames) { allNames[name]++; } else { allNames[name] = 1; } return allNames; }, {});
+
+            let colorMap = {}
+
+            uniqueCountry.forEach(e => {
+                colorMap[e.name] = e.color
+            })
+
+            drawCircle(map, getLatlng, Object.keys(lociCount), Object.values(lociCount), Object.keys(lociCount).map(e => colorMap[e]), node, link, chart, uniqueVirus, graph)
+        });
 
     dotCanvas.append("text")
         .text(t)
