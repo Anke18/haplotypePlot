@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-07 14:07:29
+ * @LastEditTime: 2020-07-07 16:41:04
  */
 
 import * as d3 from 'd3';
@@ -28,8 +28,8 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
             graph
         ]).then(([geneData, nspData, variants, graph]) => {
 
-               console.log(geneData);
-                console.log(nspData);
+              // console.log(geneData);
+              //  console.log(nspData);
 
             function sortByKey(array, key) {
                 return array.sort(function (a, b) {
@@ -114,7 +114,9 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
                 .attr('x', (d) => xGeneScale(d.start))
                 .attr('width', d => xGeneScale(d.end - d.start + 1))
                 .attr('height', 20)
-                .attr('fill', (d, i) => d.color);
+                .attr('fill', (d, i) => d.color)
+                .attr("stroke-width", 0.4)
+                .attr("stroke", "black");
 
             let nspCanvas = geneCanvas.append('g')
                 .attr('transform', `translate(0, 170)`);
@@ -221,7 +223,9 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
                         }
                     })
                     .attr('height', 20)
-                    .attr('fill', (d, i) => d.color);
+                    .attr('fill', (d, i) => d.color)
+                    .attr("stroke-width", 0.4)
+                    .attr("stroke", "black");
 
 
                 largeCanvas.selectAll('text').data(a)
@@ -288,7 +292,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
         .enter().append('line')
         .attr("class", "l1")
         .attr("stroke-width", 2)
-        .attr("stroke", "red")
+        .attr("stroke", "grey")
         .attr('x1', (d, i) => {
             // console.log(d.pos + ":" + xScale(parseInt(d.pos)))
             return xScale(parseInt(d.loci))
@@ -328,6 +332,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
         })
         .on("click", e => {
 
+            //e.attr("stroke", "red");
             let res = e.node;
 
             // console.log(res.indexOf(e.id));

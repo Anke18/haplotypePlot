@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-06 16:17:56
+ * @LastEditTime: 2020-07-07 16:09:31
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 import { getUniqueCountry, getUniqueDate, getUniqueVirus } from './dataProcess';
 import { buildNode } from './buildNode';
 import { nodeLink, setScale } from './nodeLink';
-import { defaultColor, defaultBehaviors, linkRange, nodeRange, chargeRange } from './plotConfig';
+import { defaultColor, defaultColor2, defaultBehaviors, linkRange, nodeRange, chargeRange } from './plotConfig';
 import { globalSearch } from './search';
 import { nodeHighlight, linkHighlight } from './partsHighlight';
 import 'bootstrap';
@@ -33,7 +33,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
     let uniqueVirus = getUniqueVirus(graph)
     let infor = graph.infor;
 
-    let colorCustom = defaultColor;
+    let colorCustom = defaultColor2;
     let nodeExtent = d3.extent(graph.nodes.map(a => a.radius))
     let linkExtent = d3.extent(graph.links.map(a => a.distance))
 
