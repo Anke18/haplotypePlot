@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-06 16:41:33
+ * @LastEditTime: 2020-07-07 14:07:29
  */
 
 import * as d3 from 'd3';
@@ -13,21 +13,23 @@ import { nodeHighlight } from './partsHighlight';
 import { updateNodeTable, updateNodeTableByVirus } from './nodeTable';
 import { push } from 'core-js/fn/array';
 import { drawCircle } from './mapPlot';
+import { geneStructure, nsp } from './plotConfig';
+
 
 export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, chart, url, map, getLatlng, uniqueCountry) => {
     d3.select("#genePlot").select("svg").remove()
     Promise
         .all([
-            d3.tsv("https://bigd.big.ac.cn/ewas/haplotypetest/gene_structure.tsv"),
-            d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/nsp.tsv'),
-            d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_altCoverage.tsv'),
-            d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_amioCoverage.tsv'),
+            geneStructure.gene,
+            nsp.nsp,
+         //   d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_altCoverage.tsv'),？？？excuseme？
+        //    d3.tsv('https://bigd.big.ac.cn/ewas/haplotypetest/2019-nCoV_3437_amioCoverage.tsv'),
             d3.json(url),
             graph
-        ]).then(([geneData, nspData, altData, amioData, variants, graph]) => {
+        ]).then(([geneData, nspData, variants, graph]) => {
 
-            //   console.log(altData);
-            //    console.log(variants.variants);
+               console.log(geneData);
+                console.log(nspData);
 
             function sortByKey(array, key) {
                 return array.sort(function (a, b) {
@@ -70,7 +72,7 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
             }
 
             //console.log(pvdata);
-
+            
             geneData.forEach((e, i) => {
                 e.color = colorCustom[i];
                 e.start = parseInt(e.start)
