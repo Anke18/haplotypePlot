@@ -4,7 +4,7 @@
  * @Author: Anke Wang
  * @Date: 2020-05-26 14:35:34
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-06-18 14:07:27
+ * @LastEditTime: 2020-07-08 16:32:42
 --> 
 
 
@@ -178,13 +178,13 @@
             <div style="position: absolute; top: 10px; right: 10px; z-index: 100; margin-right:10px;">
                 <i id="showDate" class="fas fa-history" style="margin-right:10px;"></i>
                 <i id="showTable" class="fas fa-table" style="margin-right:10px;"></i>
-                <i id="showSnp" class="fas fa-cubes"></i>
+
             </div>
 
             <div class="node-table">
                 <div id="datePlot"></div>
             </div>
-            <div class="node-table" id="genePlot" style="position:relative; display: none;"></div>
+
             <table id="detail" style="display: none;"> </table>
         </div>
 
@@ -353,6 +353,12 @@
                 <div id="plot"></div>
             </div>
 
+            <button class="collapsible">Gene Structure</button>
+            <div class="content">
+                <div class="date-plot-panel">
+                    <div id="genePlot" style="position:relative;"></div>
+                </div>
+            </div>
             <!--   <div class="date-plot-panel">
             <div id="datePlot"></div>
         </div> -->

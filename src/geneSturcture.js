@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-07 16:41:04
+ * @LastEditTime: 2020-07-08 15:33:45
  */
 
 import * as d3 from 'd3';
@@ -28,7 +28,7 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
             graph
         ]).then(([geneData, nspData, variants, graph]) => {
 
-              // console.log(geneData);
+            //   console.log(geneData);
               //  console.log(nspData);
 
             function sortByKey(array, key) {
@@ -251,7 +251,8 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
 
 const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry) => {
 
-    // console.log(t);
+    //console.log(c, canvas, width, data, xrange, yT, t, graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry);
+    // console.log(t);[22081.787474499695, 26659.494495271232]
     //console.log(data.variants);
     d3.select("." + c).remove()
     let dotCanvas = canvas.append("g")
@@ -332,7 +333,11 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
         })
         .on("click", e => {
 
-            //e.attr("stroke", "red");
+          // console.log(e);
+         //   let getrange = [parseInt(e.loci) - 20, parseInt(e.loci) + 20];
+        //    drawDotPlot(c, canvas, width, data, getrange, yT, t, graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry);
+         //   dotCanvas.select(this).select("li").style("stroke", "red");
+            //e.attr("stroke", "red");loci: "25563"
             let res = e.node;
 
             // console.log(res.indexOf(e.id));

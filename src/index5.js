@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-07 16:09:31
+ * @LastEditTime: 2020-07-08 16:39:10
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -25,9 +25,11 @@ import { drawGeneStructure } from './geneSturcture';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { refreshNodeTable, updateNodeTable, updateNodeTableByVirus } from "./nodeTable";
 import { getFreUrl2 } from './getDataUrl';
+import { divShowHide  } from './collapsible';
 
 d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&area=world&frequency=0.005").then(graph => {
 
+    divShowHide();
     let uniqueCountry = getUniqueCountry(graph);
     let uniqueDate = getUniqueDate(graph)
     let uniqueVirus = getUniqueVirus(graph)
@@ -246,10 +248,12 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
 
         $("#detail").show()
         $("#datePlot").hide()
-        $("#genePlot").hide()
+       // $("#genePlot").hide()
        
     })
 
+    let gurl = getFreUrl2(0.005);
+    drawGeneStructure(colorCustom, graph, node, link, uniqueVirus, chart, gurl, map, getLatlng, uniqueCountry);
 
     $(".fa-play-circle").on("click", () => {
         playStart($(".fa-play-circle"), uniqueDate, graph, node, link, chart,
@@ -302,25 +306,25 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
 
     $("#showTable").on("click", function () {
         $("#detail").show()
-        $("#genePlot").hide()
+     //   $("#genePlot").hide()
         $("#datePlot").hide()
     })
 
-    let genedraw = 0;
+  /*  let genedraw = 0;
     $("#showSnp").on("click", function () {
         $("#detail").hide()
         $("#genePlot").show()
         if (genedraw == 0)
         {
-            let gurl = getFreUrl2(0.005);
+            let gurl = getFreUrl2(0.001);
             drawGeneStructure(colorCustom, graph, node, link, uniqueVirus, chart, gurl, map, getLatlng, uniqueCountry);
         }
         $("#datePlot").hide()
-    })
+    })*/
 
     $("#showDate").on("click", function () {
         $("#detail").hide()
-        $("#genePlot").hide()
+     //  $("#genePlot").hide()
         $("#datePlot").show()
     })
 
