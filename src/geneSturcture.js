@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-08 15:33:45
+ * @LastEditTime: 2020-07-09 16:10:30
  */
 
 import * as d3 from 'd3';
@@ -51,7 +51,8 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
             let pvdata = [];
             let tnode = [];
             tnode.push(vdata2[0].node);
-            pvdata.push(vdata2[0]);
+           // pvdata.push(vdata2[0]);
+            pvdata.push({ node: vdata2[0].node, freq: parseInt(vdata2[0].freq), loci: parseInt(vdata2[0].loci) });
 
             for (let i = 1, j = 0; i < vdata2.length; i++) {
 
@@ -65,7 +66,7 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
                     j++;
                     tnode = [];
                     tnode.push(vdata2[i].node);
-                    pvdata.push({ node: vdata2[i].node, freq: vdata2[i].freq, loci: vdata2[i].loci });
+                    pvdata.push({ node: vdata2[i].node, freq: parseInt(vdata2[i].freq), loci: parseInt(vdata2[i].loci) });
 
                 }
 
@@ -78,6 +79,29 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
                 e.start = parseInt(e.start)
                 e.end = parseInt(e.end)
             })
+
+            pvdata.forEach((d) => {
+                d.color = setColor(d.loci)
+            })
+
+           // console.log(pvdata);
+
+            function setColor(loci){
+                if(loci >= geneData[0].start && loci <= geneData[0].end) return geneData[0].color;
+                if(loci >= geneData[1].start && loci <= geneData[1].end) return geneData[1].color;
+                if(loci >= geneData[2].start && loci <= geneData[2].end) return geneData[2].color;
+                if(loci >= geneData[3].start && loci <= geneData[3].end) return geneData[3].color;
+                if(loci >= geneData[4].start && loci <= geneData[4].end) return geneData[4].color;
+                if(loci >= geneData[5].start && loci <= geneData[5].end) return geneData[5].color;
+                if(loci >= geneData[6].start && loci <= geneData[6].end) return geneData[6].color;
+                if(loci >= geneData[7].start && loci <= geneData[7].end) return geneData[7].color;
+                if(loci >= geneData[8].start && loci <= geneData[8].end) return geneData[8].color;
+                if(loci >= geneData[9].start && loci <= geneData[9].end) return geneData[9].color;
+                if(loci >= geneData[10].start && loci <= geneData[10].end) return geneData[10].color;
+                if(loci >= geneData[11].start && loci <= geneData[11].end) return geneData[11].color;
+                else return "black";
+            }
+
             let geneWidth = $("#genePlot").width();
             let geneHeight = Math.max($("#genePlot").height(), 300);
             let xGeneScale = d3.scaleLinear()
@@ -293,7 +317,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
         .enter().append('line')
         .attr("class", "l1")
         .attr("stroke-width", 2)
-        .attr("stroke", "grey")
+        .attr("stroke", d => d.color)
         .attr('x1', (d, i) => {
             // console.log(d.pos + ":" + xScale(parseInt(d.pos)))
             return xScale(parseInt(d.loci))
