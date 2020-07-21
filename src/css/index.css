@@ -59,7 +59,7 @@ body {
 .date-plot-panel {
     position: relative;
     flex: 3;
-    height: 30%;
+    height: 300px;
     overflow: scroll;
 }
 
