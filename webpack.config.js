@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 09:47:39
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-06-18 15:25:16
+ * @LastEditTime: 2020-07-28 11:44:37
  */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -18,7 +18,7 @@ module.exports = {
     entry: {
         index: "./src/index.js",
         index0: "./src/index0.js",
-        index5: "./src/index5.js",
+        index1: "./src/index1.js",
         index01: "./src/index01.js",
         index05: "./src/index05.js",
         index6: "./src/index6.js",
@@ -68,9 +68,9 @@ module.exports = {
             //  hash: true,
              // title: 'My Awesome application',
             //  myPageHeader: 'Settings',
-              template: './src/index5.html',
-              chunks: ['index5'],
-              filename: 'index5.html' ,
+              template: './src/index1.html',
+              chunks: ['index1'],
+              filename: 'index1.html' ,
               minify: {
                   minimize: true,
                   removeConments: true,

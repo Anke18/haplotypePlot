@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-16 11:27:58
+ * @LastEditTime: 2020-07-08 16:39:10
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -12,7 +12,7 @@ import * as d3 from 'd3';
 import { getUniqueCountry, getUniqueDate, getUniqueVirus } from './dataProcess';
 import { buildNode } from './buildNode';
 import { nodeLink, setScale } from './nodeLink';
-import { defaultColor,defaultColor2, defaultBehaviors, linkRange, nodeRange, chargeRange } from './plotConfig';
+import { defaultColor, defaultColor2, defaultBehaviors, linkRange, nodeRange, chargeRange } from './plotConfig';
 import { globalSearch } from './search';
 import { nodeHighlight, linkHighlight } from './partsHighlight';
 import 'bootstrap';
@@ -22,12 +22,12 @@ import { playStart } from './player';
 import { setCountryCoord, drawMap, drawCircle } from './mapPlot';
 import { setSimulation } from './simulation';
 import { drawGeneStructure } from './geneSturcture';
-import { getFreUrl2 } from './getDataUrl';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { refreshNodeTable, updateNodeTable, updateNodeTableByVirus } from "./nodeTable";
+import { getFreUrl2 } from './getDataUrl';
 import { divShowHide  } from './collapsible';
 
-d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&area=world&frequency=0.001").then(graph => {
+d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&area=world&frequency=0.005").then(graph => {
 
     divShowHide();
     let uniqueCountry = getUniqueCountry(graph);
@@ -194,9 +194,6 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
             name: params.name
         })
         let res = globalSearch(params.value[0] + "|date", graph)
-       // console.log(params.value[0] + "|date");
-      //  console.log(res);
-      // console.log(graph);
         nodeHighlight(node, link, res, 0.05);
         let a = uniqueVirus.filter(e => e.date === params.value[0])
 
@@ -211,7 +208,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
 
         drawCircle(map, getLatlng, Object.keys(lociCount), Object.values(lociCount), Object.keys(lociCount).map(e => colorMap[e]), node, link, chart, uniqueVirus, graph)
 
-        
+       
     });
 
     chart.on('mouseout', function (params) {
@@ -245,7 +242,6 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
             colorMap[e.name] = e.color
         })
 
-        
         drawCircle(map, getLatlng, Object.keys(lociCount), Object.values(lociCount), Object.keys(lociCount).map(e => colorMap[e]), node, link, chart, uniqueVirus, graph)
 
         updateNodeTableByVirus(d.Virus)
@@ -256,7 +252,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
        
     })
 
-    let gurl = getFreUrl2(0.001);
+    let gurl = getFreUrl2(0.005);
     drawGeneStructure(colorCustom, graph, node, link, uniqueVirus, chart, gurl, map, getLatlng, uniqueCountry);
 
     $(".fa-play-circle").on("click", () => {
@@ -335,3 +331,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
     refreshNodeTable(graph.nodes)
 
 })
+
+
+
+
