@@ -2,9 +2,9 @@
  * @Descripttion: 
  * @version: 
  * @Author: Anke Wang
- * @Date: 2020-05-26 14:35:38
+ * @Date: 2020-05-26 13:02:13
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-28 11:40:32
+ * @LastEditTime: 2020-07-28 11:39:07
 --> 
 
 
@@ -34,7 +34,6 @@
 
 <!-- <script src="https://bigd.big.ac.cn:443/ncov/static/js/jquery-1.11.3.min.js"></script> -->
 <!-- <script src="https://bigd.big.ac.cn:443/ncov/static/sui/semantic.min.js"></script> -->
-
 <div class="ui vertical sidebar menu">
     <a class="item" href="https://bigd.big.ac.cn" target="_blank"><img class="ui tiny image"
                                                                        src="https://bigd.big.ac.cn/cdn/image/ngdc-logo-blue.png"/></a>
@@ -178,7 +177,7 @@
 
         <div class="bottom-left" style="position: relative;">
             <div style="position: absolute; top: 10px; right: 10px; z-index: 100; margin-right:10px;">
-                <i id="showDate" class="fas fa-history" style="margin-right:10px;"></i>
+                <i id="showDate" class="fas fa-history" style="margin-right:10px;"></i>  
                 <i id="showTable" class="fas fa-table" style="margin-right:10px;"></i>
 
             </div>
@@ -215,12 +214,12 @@
                     aria-expanded="false"></i>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/network">切为旧版</a>
-                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/groupchart/0005">查看分簇分布</a>
+                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/groupchart/005">查看分簇分布</a>
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/0">查看未过滤原始图像(>0)</a>
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/0001">查看变异频率过滤图(>0.0001)</a>
-                    <a class="dropdown-item" id='faoldLink' >查看变异频率过滤图(>0.0005)</a>
+                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/0005">查看变异频率过滤图(>0.0005)</a>
                     <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/001">查看变异频率过滤图(>0.001)</a>
-                    <a class="dropdown-item" id='faoldLink' href="https://bigd.big.ac.cn/ncov/haplotype/005">查看变异频率过滤图(>0.005)</a>
+                    <a class="dropdown-item" id='faoldLink' >查看变异频率过滤图(>0.005)</a>
                 </div>
             </div>
 
@@ -233,13 +232,13 @@
 
             <div id="button1" style="text-align:center;">
                 <button class="icon-btn add-btn">
-                    <a class="mylink" href="https://bigd.big.ac.cn/ncov/network">View Old Version</a>
+                  <a class="mylink" href="https://bigd.big.ac.cn/ncov/network">View Old Version</a>
                 </button>
             </div>
 
             <div id="button2" class="linkbutton2">
                 <div class="flinks">
-                    <a href="https://bigd.big.ac.cn/ncov/groupchart/0005" style="font-size: 11px">>0.0005</a>
+                    <a href="https://bigd.big.ac.cn/ncov/groupchart/005" style="font-size: 11px">>0.005</a>
                     <div class="overlay"><a>View Cluster Distribution</a></div>
                 </div>
             </div>
@@ -248,121 +247,117 @@
                 <div class="flinks">
                     <a href="https://bigd.big.ac.cn/ncov/haplotype/0" style="font-size: 11px">All</a>
                     <a href="https://bigd.big.ac.cn/ncov/haplotype/0001" style="font-size: 11px">>0.0001</a>
-                    <a style="font-size: 11px; color:#666">>0.0005</a>
+                    <a href="https://bigd.big.ac.cn/ncov/haplotype/0005" style="font-size: 11px">>0.0005</a>
                     <a href="https://bigd.big.ac.cn/ncov/haplotype/001" style="font-size: 11px">>0.001</a>
-                    <a href="https://bigd.big.ac.cn/ncov/haplotype/005" style="font-size: 11px">>0.005</a>
+                    <a style="font-size: 11px; color:#666">>0.005</a>
                     <div class="overlay"><a>Set Filter Frequency</a></div>
                 </div>
             </div>
-            
-                <div class="dropdown dropleft float-right" style="position: absolute; top: 100px; right: 20px;">
-                    <i class="fas fa-download" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                    </i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" id='exportPng'>PNG</a>
-                        <a class="dropdown-item" id="exportSvg">SVG</a>
-                    </div>
-                </div>
+            <div class="dropdown dropleft float-right" style="position: absolute; top: 100px; right: 20px;">
+                <i class="fas fa-download" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                <div class="dropdown dropleft float-right">
-                    <i class="fas fa-sliders-h" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <form class="dropdown-menu p-4" style="width: 450px;">
-                            <div class="form-group">
-                                <label>Branch Scale:&nbsp;</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="linkScaleType" value="sqrt"
-                                        checked>
-                                    <label class="form-check-label">Sqrt</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="linkScaleType" value="linear">
-                                    <label class="form-check-label">Linear</label>
-                                </div>
-                                <div id="question2">
-                                    <i class="fas fa-info-circle" data-toggle="tooltip"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="linkSize" style="display: inline-block;">Branch
-                                    Size:&nbsp;&nbsp;&nbsp;</label>
-                                <label style="display: inline-block;">Min:&nbsp;&nbsp;</label>
-                                <input type="number" id="linkMin" name="linkMin" style="display: inline-block;" min="1"
-                                    max="200" value=7>
-                                <label style="display: inline-block;">&nbsp;&nbsp;&nbsp;Max:&nbsp;&nbsp;</label>
-                                <input type="number" id="linkMax" name="linkMax" style="display: inline-block;" min="1"
-                                    max="500" value=200>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Node Scale:&nbsp;&nbsp;&nbsp;</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="nodeScaleType" value="sqrt"
-                                        checked>
-                                    <label class="form-check-label">Sqrt</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="nodeScaleType" value="linear">
-                                    <label class="form-check-label">Linear</label>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="nodeSize" style="display: inline-block;">Node
-                                    Size:&nbsp;&nbsp;&nbsp;</label>
-                                <label style="display: inline-block;">Min:&nbsp;&nbsp;</label>
-                                <input type="number" id="nodeMin" name="nodeMin" style="display: inline-block;" min="1"
-                                    max="15" value=1>
-                                <label style="display: inline-block;">&nbsp;&nbsp;&nbsp;Max:&nbsp;&nbsp;</label>
-                                <input type="number" id="nodeMax" name="nodeMax" style="display: inline-block;" min="1"
-                                    max="50" value=12>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="charge" style="display: inline-block;">Charge:&nbsp;&nbsp;&nbsp;</label>
-                                <input type="number" id="charge" name="charge" style="display: inline-block;" min="-100"
-                                    max="0" value=-2>
-                            </div>
-
-                        </form>
-                    </i>
-                </div>
-
-                <div class="zoom">
-                    <a id="zoomIn">
-                        <i class="fas fa-search-plus"></i>
-                    </a>
-                    <hr>
-                    <a id="zoomReset">
-                        <i class="fas fa-expand"></i>
-                    </a>
-                    <hr>
-                    <a id="zoomOut">
-                        <i class="fas fa-search-minus"></i>
-                    </a>
-                </div>
-
-                <div class="playDate">
-                    <input id="playIndex" value="0" hidden>
-                    <input id="playContent" value="" hidden>
-                    <i class="fas fa-play-circle" data-status="start" data-index=0 data-tmp=""></i>
-                    <i class="fas fa-pause-circle" style="display: none;"></i>
-                    <i class="fas fa-redo"></i>
-                </div>
-
-                <div id="plot"></div>
-            </div>
-            <button class="collapsible">Gene Structure</button>
-            <div class="content">
-                <div class="date-plot-panel">
-                    <div id="genePlot" style="position:relative;"></div>
+                </i>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" id='exportPng'>PNG</a>
+                    <a class="dropdown-item" id="exportSvg">SVG</a>
                 </div>
             </div>
-            <!--   <div class="date-plot-panel">
+
+            <div class="dropdown dropleft float-right">
+                <i class="fas fa-sliders-h" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <form class="dropdown-menu p-4" style="width: 450px;">
+                        <div class="form-group">
+                            <label>Branch Scale:&nbsp;</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="linkScaleType" value="sqrt" checked>
+                                <label class="form-check-label">Sqrt</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="linkScaleType" value="linear">
+                                <label class="form-check-label">Linear</label>
+                            </div>
+                            <div id="question2">
+                                <i class="fas fa-info-circle" data-toggle="tooltip"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkSize" style="display: inline-block;">Branch Size:&nbsp;&nbsp;&nbsp;</label>
+                            <label style="display: inline-block;">Min:&nbsp;&nbsp;</label>
+                            <input type="number" id="linkMin" name="linkMin" style="display: inline-block;" min="1"
+                                max="200" value=7>
+                            <label style="display: inline-block;">&nbsp;&nbsp;&nbsp;Max:&nbsp;&nbsp;</label>
+                            <input type="number" id="linkMax" name="linkMax" style="display: inline-block;" min="1"
+                                max="500" value=200>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Node Scale:&nbsp;&nbsp;&nbsp;</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="nodeScaleType" value="sqrt" checked>
+                                <label class="form-check-label">Sqrt</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="nodeScaleType" value="linear">
+                                <label class="form-check-label">Linear</label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="nodeSize" style="display: inline-block;">Node Size:&nbsp;&nbsp;&nbsp;</label>
+                            <label style="display: inline-block;">Min:&nbsp;&nbsp;</label>
+                            <input type="number" id="nodeMin" name="nodeMin" style="display: inline-block;" min="1"
+                                max="15" value=1>
+                            <label style="display: inline-block;">&nbsp;&nbsp;&nbsp;Max:&nbsp;&nbsp;</label>
+                            <input type="number" id="nodeMax" name="nodeMax" style="display: inline-block;" min="1"
+                                max="50" value=12>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="charge" style="display: inline-block;">Charge:&nbsp;&nbsp;&nbsp;</label>
+                            <input type="number" id="charge" name="charge" style="display: inline-block;" min="-100"
+                                max="0" value=-2>
+                        </div>
+
+                    </form>
+                </i>
+            </div>
+
+            <div class="zoom">
+                <a id="zoomIn">
+                    <i class="fas fa-search-plus"></i>
+                </a>
+                <hr>
+                <a id="zoomReset">
+                    <i class="fas fa-expand"></i>
+                </a>
+                <hr>
+                <a id="zoomOut">
+                    <i class="fas fa-search-minus"></i>
+                </a>
+            </div>
+
+            <div class="playDate">
+                <input id="playIndex" value="0" hidden>
+                <input id="playContent" value="" hidden>
+                <i class="fas fa-play-circle" data-status="start" data-index=0 data-tmp=""></i>
+                <i class="fas fa-pause-circle" style="display: none;"></i>
+                <i class="fas fa-redo"></i>
+            </div>
+
+            <div id="plot"></div>
+        </div>
+        <button class="collapsible">Gene Structure</button>
+        <div class="content">
+            <div class="date-plot-panel">
+                <div id="genePlot" style="position:relative;"></div>
+            </div>
+        </div>
+     <!--   <div class="date-plot-panel">
             <div id="datePlot"></div>
         </div> -->
-        </div>
-
     </div>
+
+</div>

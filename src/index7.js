@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-08-04 15:54:13
+ * @LastEditTime: 2020-07-08 16:39:10
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -26,7 +26,8 @@ import { saveSvgAsPng } from 'save-svg-as-png';
 import { refreshNodeTable, updateNodeTable, updateNodeTableByVirus } from "./nodeTable";
 import { getFreUrl2 } from './getDataUrl';
 import { divShowHide  } from './collapsible';
-import { graph  } from './tempdata';
+
+d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&area=world&frequency=0.005").then(graph => {
 
     divShowHide();
     let uniqueCountry = getUniqueCountry(graph);
@@ -251,7 +252,7 @@ import { graph  } from './tempdata';
        
     })
 
-    let gurl = getFreUrl2(0.0005);
+    let gurl = getFreUrl2(0.005);
     drawGeneStructure(colorCustom, graph, node, link, uniqueVirus, chart, gurl, map, getLatlng, uniqueCountry);
 
     $(".fa-play-circle").on("click", () => {
@@ -329,7 +330,7 @@ import { graph  } from './tempdata';
 
     refreshNodeTable(graph.nodes)
 
-
+})
 
 
 
