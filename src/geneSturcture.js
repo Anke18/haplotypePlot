@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-09 16:10:30
+ * @LastEditTime: 2020-08-17 10:12:21
  */
 
 import * as d3 from 'd3';
@@ -324,12 +324,12 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
         })
         .attr('x2', (d, i) => xScale(parseInt(d.loci)))
         .attr('y1', yScale(0))
-        .attr('y2', (d, i) => yScale(d.freq / 28348))
+        .attr('y2', (d, i) => yScale(d.freq / 42349))
         .attr("cursor", "pointer")
         .on("mouseover", (d) => {
             d3.select(".dotProp").remove()
             let tx = Math.min(xScale(parseInt(d.loci)) + 2, width - 100)
-            let ty = Math.min(yScale(d.freq / 28348) / 2, 120)
+            let ty = Math.min(yScale(d.freq / 42349) / 2, 120)
 
             let propCanvas = dotCanvas.append('g')
                 .attr('class', 'dotProp')
@@ -344,7 +344,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
                 .duration(500);
 
             propCanvas.append("text")
-                .text("Freq: " + (d.freq / 28348).toFixed(5))
+                .text("Freq: " + (d.freq / 42349).toFixed(5))
                 .attr("fill", "white")
                 .attr('font-size', 10)
                 .attr('transform', `translate(5, 18)`)
