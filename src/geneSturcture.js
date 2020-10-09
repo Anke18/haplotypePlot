@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-09 12:26:16
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-08-17 10:12:21
+ * @LastEditTime: 2020-10-09 14:15:03
  */
 
 import * as d3 from 'd3';
@@ -39,8 +39,9 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
             }
 
             let vdata = [];
-            variants.variant.forEach(d => {
+            variants.nodes.forEach(d => {
                 d.snp.forEach(e => {
+                    //console.log(e.freq);
                     vdata.push({ node: d.node, freq: e.freq, loci: e.loci });
                 });
             })
@@ -66,7 +67,7 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
                     j++;
                     tnode = [];
                     tnode.push(vdata2[i].node);
-                    pvdata.push({ node: vdata2[i].node, freq: parseInt(vdata2[i].freq), loci: parseInt(vdata2[i].loci) });
+                    pvdata.push({ node: vdata2[i].node, freq: parseFloat(vdata2[i].freq), loci: parseInt(vdata2[i].loci) });
 
                 }
 
@@ -84,7 +85,7 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
                 d.color = setColor(d.loci)
             })
 
-           // console.log(pvdata);
+            //console.log(pvdata);
 
             function setColor(loci){
                 if(loci >= geneData[0].start && loci <= geneData[0].end) return geneData[0].color;
@@ -274,7 +275,7 @@ export const drawGeneStructure = (colorCustom, graph, node, link, uniqueVirus, c
 }
 
 const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry) => {
-
+    //console.log(data);
     //console.log(c, canvas, width, data, xrange, yT, t, graph, node, link, uniqueVirus, chart, map, getLatlng, uniqueCountry);
     // console.log(t);[22081.787474499695, 26659.494495271232]
     //console.log(data.variants);
@@ -313,6 +314,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
 
     let a = data.filter(e => (e.loci >= xrange[0] && e.loci <= xrange[1]))
 
+    //console.log(a);
     dotCanvas.selectAll('.l1').data(a)
         .enter().append('line')
         .attr("class", "l1")
@@ -324,12 +326,13 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
         })
         .attr('x2', (d, i) => xScale(parseInt(d.loci)))
         .attr('y1', yScale(0))
-        .attr('y2', (d, i) => yScale(d.freq / 42349))
+        .attr('y2', (d, i) => yScale(d.freq))
         .attr("cursor", "pointer")
         .on("mouseover", (d) => {
             d3.select(".dotProp").remove()
             let tx = Math.min(xScale(parseInt(d.loci)) + 2, width - 100)
-            let ty = Math.min(yScale(d.freq / 42349) / 2, 120)
+           // console.log(d.freq);
+            let ty = Math.min(yScale(d.freq) / 2, 120)
 
             let propCanvas = dotCanvas.append('g')
                 .attr('class', 'dotProp')
@@ -344,7 +347,7 @@ const drawDotPlot = (c, canvas, width, data, xrange, yT, t, graph, node, link, u
                 .duration(500);
 
             propCanvas.append("text")
-                .text("Freq: " + (d.freq / 42349).toFixed(5))
+                .text("Freq: " + (d.freq).toFixed(5))
                 .attr("fill", "white")
                 .attr('font-size', 10)
                 .attr('transform', `translate(5, 18)`)
