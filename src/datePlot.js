@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-04 11:20:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-09-16 18:10:10
+ * @LastEditTime: 2020-11-03 13:34:51
  */
 
 // import * as echarts from 'echarts';
@@ -45,13 +45,13 @@ export const drawHeatmapDate = (data) => {
                 color: '#000'
             }
         },
-        calendar: {
+        calendar: [{
             top: 20,
             left: 80,
             right: 70,
-            bottom:10,
+            height: '40%',
             cellSize: ['auto', 'auto'],
-            range: [data[0].name, data[data.length-1].name],
+            range: [data[0].name, data[159].name],
             itemStyle: {
                 borderWidth: 0.5
             },
@@ -59,7 +59,7 @@ export const drawHeatmapDate = (data) => {
                 margin: 8,
                 nameMap: ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'],
                 firstDay: 1,
-                fontSize: 9
+                fontSize: 8
             },
             monthLabel: {
                 //margin: 8,
@@ -79,10 +79,46 @@ export const drawHeatmapDate = (data) => {
                 show: true,
                 margin: 45
             }
-        },
-        series: {
-            name: "heat",
+        },{
+            top: '55%',
+            left: 80,
+            right: 70,
+            bottom: 20,
+            height: '40%',
+            cellSize: ['auto', 'auto'],
+            range: [data[160].name, data[data.length-1].name],
+            itemStyle: {
+                borderWidth: 0.5
+            },
+            dayLabel: {
+                margin: 8,
+                nameMap: ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'],
+                firstDay: 1,
+                fontSize: 8
+            },
+            monthLabel: {
+                //margin: 8,
+                //nameMap: ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'],
+                //firstDay: 1
+                //formatter: '{yyyy}-{MM}',
+                //padding: 5,
+                fontSize : 9,
+                nameMap: [
+                    'Jan', 'Feb', 'Mar',
+                    'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep',
+                    'Oct', 'Nov', 'Dec'
+                ]
+            },
+            yearLabel: {
+                show: true,
+                margin: 45
+            }
+        }],
+        series: [{
+            //name: "heat",
             type: 'heatmap',
+            calendarIndex: 0,
             coordinateSystem: 'calendar',
             data: a,
             label: {
@@ -99,7 +135,27 @@ export const drawHeatmapDate = (data) => {
                     color: '#fd7e14'
                 }
             }
-        }
+        },{
+            //name: "heat",
+            type: 'heatmap',
+            calendarIndex: 1,
+            coordinateSystem: 'calendar',
+            data: a,
+            label: {
+                show: true,
+                formatter: function(params) {
+                   // return params.value[0].split('-')[1]+"-"+params.value[0].split('-')[2]
+                   return params.value[0].split('-')[2]
+                },
+                color: "#6c757d"
+            },
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    color: '#fd7e14'
+                }
+            }
+        }]
     };
 
     let chart = echarts.init(document.getElementById("datePlot"))

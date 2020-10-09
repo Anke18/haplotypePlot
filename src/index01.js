@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-07-07 16:09:19
+ * @LastEditTime: 2020-10-09 16:03:03
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -190,7 +190,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
         })
         chart.dispatchAction({
             type: 'highlight',
-            seriesIndex: 0,
+            seriesIndex: [0,1],
             name: params.name
         })
         let res = globalSearch(params.value[0] + "|date", graph)
@@ -229,7 +229,7 @@ d3.json("https://bigd.big.ac.cn/ncov/rest/variation/haplotype/json?date=freq&are
 
         chart.dispatchAction({
             type: 'highlight',
-            seriesIndex: 0,
+            seriesIndex: [0,1],
             name: d.Virus.map(e => e.date)
         })
 
