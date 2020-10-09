@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-04 11:20:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-06-18 11:57:27
+ * @LastEditTime: 2020-09-16 18:10:10
  */
 
 // import * as echarts from 'echarts';
@@ -47,7 +47,7 @@ export const drawHeatmapDate = (data) => {
         },
         calendar: {
             top: 20,
-            left: 60,
+            left: 80,
             right: 70,
             bottom:10,
             cellSize: ['auto', 'auto'],
@@ -56,9 +56,29 @@ export const drawHeatmapDate = (data) => {
                 borderWidth: 0.5
             },
             dayLabel: {
-                margin: 5
+                margin: 8,
+                nameMap: ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'],
+                firstDay: 1,
+                fontSize: 9
             },
-            yearLabel: {show: false}
+            monthLabel: {
+                //margin: 8,
+                //nameMap: ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'],
+                //firstDay: 1
+                //formatter: '{yyyy}-{MM}',
+                //padding: 5,
+                fontSize : 9,
+                nameMap: [
+                    '2020/Jan', 'Feb', 'Mar',
+                    'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep',
+                    'Oct', 'Nov', '2019/Dec'
+                ]
+            },
+            yearLabel: {
+                show: true,
+                margin: 45
+            }
         },
         series: {
             name: "heat",
