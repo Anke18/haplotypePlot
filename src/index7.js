@@ -4,7 +4,7 @@
  * @Author: Mengwei Li
  * @Date: 2020-04-02 10:03:38
  * @LastEditors: Anke Wang
- * @LastEditTime: 2020-08-04 15:54:13
+ * @LastEditTime: 2020-10-09 16:03:33
  */
 import './css/index.css';
 import './sass/button.min.css';
@@ -189,7 +189,7 @@ import { graph  } from './tempdata';
         })
         chart.dispatchAction({
             type: 'highlight',
-            seriesIndex: 0,
+            seriesIndex: [0,1],
             name: params.name
         })
         let res = globalSearch(params.value[0] + "|date", graph)
@@ -228,7 +228,7 @@ import { graph  } from './tempdata';
 
         chart.dispatchAction({
             type: 'highlight',
-            seriesIndex: 0,
+            seriesIndex: [0,1],
             name: d.Virus.map(e => e.date)
         })
 
